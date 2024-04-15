@@ -19,6 +19,6 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     url: ${POSTGRESQL.URL.CONNECTION:jdbc:postgresql://localhost:5432/bancodb}
-    username: postgres
-    password: asinfo2680$
+    username: mikipmax
+    password: admin
     driver-class-name: org.postgresql.Driver
