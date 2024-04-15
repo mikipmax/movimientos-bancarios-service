@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "cuenta")
+@Table(name = "cuenta", uniqueConstraints = @UniqueConstraint(columnNames = {"id_cliente", "tipo_cuenta"}))
 public class Cuenta {
 
     @Id

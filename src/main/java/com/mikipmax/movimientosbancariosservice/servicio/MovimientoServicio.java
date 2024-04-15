@@ -1,6 +1,7 @@
 package com.mikipmax.movimientosbancariosservice.servicio;
 
 
+import com.mikipmax.movimientosbancariosservice.excepciones.SaldoNoDisponibleException;
 import com.mikipmax.movimientosbancariosservice.modelo.Cliente;
 import com.mikipmax.movimientosbancariosservice.modelo.Cuenta;
 import com.mikipmax.movimientosbancariosservice.modelo.Movimiento;
@@ -46,8 +47,8 @@ public class MovimientoServicio extends ServicioUtil {
         entidad.setCuenta(cuenta);
         entidad.setFecha(LocalDate.now());
 
-        if (entidad.getValor().compareTo(BigDecimal.ZERO) < 0 && cuenta.getSaldoInicial().compareTo(entidad.getValor()) < 0) {
-            throw new RuntimeException("Saldo no Disponible");
+        if (entidad.getValor().compareTo(BigDecimal.ZERO) < 0 && cuenta.getSaldoInicial().compareTo(entidad.getValor().negate()) < 0) {
+            throw new SaldoNoDisponibleException("Saldo no Disponible");
         }
 
         entidad.setSaldoInicialHistorico(cuenta.getSaldoInicial());

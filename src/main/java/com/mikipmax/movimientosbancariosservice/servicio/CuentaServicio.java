@@ -1,6 +1,7 @@
 package com.mikipmax.movimientosbancariosservice.servicio;
 
 
+import com.mikipmax.movimientosbancariosservice.excepciones.NotFoundException;
 import com.mikipmax.movimientosbancariosservice.modelo.Cliente;
 import com.mikipmax.movimientosbancariosservice.modelo.Cuenta;
 import com.mikipmax.movimientosbancariosservice.modelo.Persona;
@@ -32,7 +33,7 @@ public class CuentaServicio extends ServicioUtil {
     }
 
     public Mono<Cuenta> buscarPorId(Long id) {
-        Cuenta cuenta = this.cuentaRepositorio.findById(id).orElseThrow(() -> new RuntimeException("Entidad no encontrada"));
+        Cuenta cuenta = this.cuentaRepositorio.findById(id).orElseThrow(() -> new NotFoundException("Entidad no encontrada"));
         Cliente cliente = consultaCliente(cuenta.getIdCliente());
         cuenta.setCliente(cliente);
         return Mono
