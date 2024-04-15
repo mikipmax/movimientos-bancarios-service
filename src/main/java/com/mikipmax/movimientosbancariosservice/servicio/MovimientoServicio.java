@@ -16,6 +16,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -45,7 +46,7 @@ public class MovimientoServicio extends ServicioUtil {
         entidad.setCuenta(cuenta);
         entidad.setFecha(LocalDate.now());
 
-        if (cuenta.getSaldoInicial().compareTo(entidad.getValor()) < 0) {
+        if (entidad.getValor().compareTo(BigDecimal.ZERO) < 0 && cuenta.getSaldoInicial().compareTo(entidad.getValor()) < 0) {
             throw new RuntimeException("Saldo no Disponible");
         }
 
