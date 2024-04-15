@@ -1,0 +1,21 @@
+application:
+  title: Servicio para gestión de cuentas y movimientos bancarios
+  version: 1.0.0
+  author: Michael Ponce
+
+server:
+  port: 9002
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: ${POSTGRESQL.URL.CONNECTION:jdbc:postgresql://localhost:5432/bancodb}
+    username: mikipmax
+    password: admin
+    driver-class-name: org.postgresql.Driver
